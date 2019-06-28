@@ -12,13 +12,13 @@ namespace Ccda.Tests.R2
     public class ParserTests
     {
         [Theory]
-        [XmlDocumentData("TestData/CCD/1.xml", "Client (1.xml)")]
-        [XmlDocumentData("TestData/CCD/4.xml", "Client (4.xml)")]
-        [XmlDocumentData("TestData/CCD/5.xml", "Client (5.xml)")]
-        [XmlDocumentData("TestData/CCD/6.xml", "Client (6.xml)")]
-        [XmlDocumentData("TestData/CCD/7.xml", "Client (7.xml)")]
-        [XmlDocumentData("TestData/CCD/8.xml", "Client (8.xml)")]
-        [XmlDocumentData("TestData/CCD/9.xml", "Client (9.xml)")]
+        [XmlDocumentData("TestData/CCD/1.xml", "Document (1.xml)")]
+        [XmlDocumentData("TestData/CCD/4.xml", "Document (4.xml)")]
+        [XmlDocumentData("TestData/CCD/5.xml", "Document (5.xml)")]
+        [XmlDocumentData("TestData/CCD/6.xml", "Document (6.xml)")]
+        [XmlDocumentData("TestData/CCD/7.xml", "Document (7.xml)")]
+        [XmlDocumentData("TestData/CCD/8.xml", "Document (8.xml)")]
+        [XmlDocumentData("TestData/CCD/9.xml", "Document (9.xml)")]
         public void CanParseDocument(string path, string testName)
         {
             var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
