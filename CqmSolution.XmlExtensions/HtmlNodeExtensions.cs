@@ -31,8 +31,6 @@ namespace CqmSolution.XmlExtensions
         {
             if (node == null) return null;
 
-            //Some of our sample data files have effectiveTime nodes with only a single value, not low & high values.
-            //If that happens, we take that to be the low value.
             return CqmSolutionDate.TryParse(node.Attributes["value"]?.Value
                 , node.Attributes["nullflavor"]?.Value);
         }

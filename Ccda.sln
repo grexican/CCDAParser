@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqmSolution.XmlExtensions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqmSolution.XmlExtensions.Tests", "CqmSolution.XmlExtensions.Tests\CqmSolution.XmlExtensions.Tests.csproj", "{54646C48-0B99-4C2D-99FC-19A7C3800DA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CqmSolution.CcdaExtensions", "CqmSolution.CcdaExtensions\CqmSolution.CcdaExtensions.csproj", "{7C66B3F7-8FD2-4B95-B8C9-21B1F98855C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CqmSolution.CcdaExtensions.Tests", "CqmSolution.CcdaExtensions.Tests\CqmSolution.CcdaExtensions.Tests.csproj", "{AF504C90-3D79-407E-B243-4A222FFF475E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{54646C48-0B99-4C2D-99FC-19A7C3800DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54646C48-0B99-4C2D-99FC-19A7C3800DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54646C48-0B99-4C2D-99FC-19A7C3800DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C66B3F7-8FD2-4B95-B8C9-21B1F98855C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C66B3F7-8FD2-4B95-B8C9-21B1F98855C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C66B3F7-8FD2-4B95-B8C9-21B1F98855C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C66B3F7-8FD2-4B95-B8C9-21B1F98855C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF504C90-3D79-407E-B243-4A222FFF475E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF504C90-3D79-407E-B243-4A222FFF475E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF504C90-3D79-407E-B243-4A222FFF475E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF504C90-3D79-407E-B243-4A222FFF475E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
