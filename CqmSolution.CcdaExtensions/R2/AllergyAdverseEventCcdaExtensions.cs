@@ -45,7 +45,7 @@ namespace CqmSolution.CcdaExtensions.R2
             var allergyAdverseEvent = new AllergyAdverseEvent(client)
             {
                 Cause = playingEntity?.code?.GetCode(),
-                DateRange = act?.effectiveTime?.GetDateRange() //TODO: figure out date range parsing
+                DateRange = act?.effectiveTime?.GetDateRange()
             };
 
             //TODO: figure out allergy type and negation ind parsing

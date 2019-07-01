@@ -35,21 +35,34 @@ namespace CqmSolution.CcdaExtensions
 
         public static CqmSolutionDateRange GetDateRange(this IVL_TS ivlts)
         {
-            //TODO: figure out date range parsing
-            //if (ivlts == null)
+            if (ivlts?.ItemsElementName == null || ivlts.Items == null || ivlts.ItemsElementName.Length != ivlts.Items.Length)
+            {
                 return null;
+            }
 
-                //[System.Xml.Serialization.XmlElementAttribute("center", typeof(TS))]
-                //[System.Xml.Serialization.XmlElementAttribute("high", typeof(IVXB_TS))]
-                //[System.Xml.Serialization.XmlElementAttribute("low", typeof(IVXB_TS))]
-                //[System.Xml.Serialization.XmlElementAttribute("width", typeof(PQ))]
-                //[System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+            TS low = null;
+            TS high = null;
+            TS center = null;
 
-            ////Some of our sample data files have effectiveTime nodes with only a single value, not low & high values.
-            ////If that happens, it represents a Point In Time, so we take that to be both the low and the high value. //TODO: is that correct?
-            //return new EcqmDateRange((ivlts.Items?.Where(t => t is IVXB_TS)?.FirstOrDefault() as IVXB_TS)?.GetDate(),
-            //    effectiveTime.SelectSingleNode("low").GetDate() ?? effectiveTime.GetDate()
-            //    , effectiveTime.SelectSingleNode("high").GetDate() ?? effectiveTime.GetDate());
+            for (int i = 0; i < ivlts.ItemsElementName.Length; i++)
+            {
+                switch (ivlts.ItemsElementName[i])
+                {
+                    case ItemsChoiceType2.low:
+                        low = ivlts.Items[i] as TS;
+                        break;
+                    case ItemsChoiceType2.high:
+                        high = ivlts.Items[i] as TS;
+                        break;
+                    case ItemsChoiceType2.center:
+                        center = ivlts.Items[i] as TS;
+                        break;
+                }
+            }
+
+            //Some of our sample data files have effectiveTime nodes with only a single value, not low & high values.
+            //If that happens, it represents a Point In Time, so we take that to be both the low and the high value. //TODO: is that correct?
+            return new CqmSolutionDateRange(low?.GetDate() ?? center?.GetDate(), high?.GetDate() ?? center?.GetDate());
         }
 
 
