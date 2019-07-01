@@ -80,6 +80,56 @@ namespace CqmSolution.CcdaExtensions
             return new CqmSolutionDateRange(low?.GetDate() ?? center?.GetDate(), high?.GetDate() ?? center?.GetDate());
         }
 
+        //TODO: figure out result value parsing
+        //public static ResultValue GetResultValue(this HtmlNode node)
+        //{
+        //    if (node == null) return null;
+
+        //    ValueType type = ValueType.ST; //default to string value, if no type attribute
+
+        //    var xsiType = node.Attributes["xsi:type"]?.Value;
+
+        //    if (!string.IsNullOrWhiteSpace(xsiType))
+        //    {
+        //        if (System.Enum.TryParse(xsiType, out ValueType valueType))
+        //        {
+        //            type = valueType;
+        //        }
+        //        else if (xsiType.Contains("PQ"))
+        //        {
+        //            type = ValueType.PQ;
+        //        }
+        //    }
+        //    //TODO: Should we have an else statement here, that tries to infer the type?  The logic could be:
+        //    // First, try parsing out a code with GetCode; if that fails, see if it has a “value” attribute
+        //    // (and possibly a unit), in which case it’s a PhysicalQuantity; finally, assume String and take the InnerHtml.
+
+        //    Code code = null;
+        //    string value = null;
+        //    string unit = null;
+
+        //    switch (type)
+        //    {
+        //        case ValueType.CD:
+        //        {
+        //            code = GetCode(node);
+        //            break;
+        //        }
+        //        case ValueType.PQ:
+        //        {
+        //            value = node.Attributes["value"]?.Value;
+        //            unit = node.Attributes["unit"]?.Value;
+        //            break;
+        //        }
+        //        case ValueType.ST:
+        //        {
+        //            value = node.InnerHtml;
+        //            break;
+        //        }
+        //    }
+
+        //    return new ResultValue(type, code, value, unit);
+        //}
 
         public static Address GetAddress(this AD ad)
         {
