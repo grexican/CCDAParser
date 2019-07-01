@@ -34,11 +34,18 @@ namespace CqmSolution.CcdaExtensions.R2
 
         public static AllergyAdverseEvent GetAllergyAdverseEventFromAct(this POCD_MT000040Act act, Client client)
         {
+            var observation = act?.entryRelationship?.FirstOrDefault(r =>
+                    r.Item is POCD_MT000040Observation)
+                ?.Item as POCD_MT000040Observation;
+
+            var playingEntity = observation?.participant?.FirstOrDefault(p =>
+                    p.typeCode == "CSM" && p.participantRole?.Item is POCD_MT000040PlayingEntity)
+                ?.participantRole?.Item as POCD_MT000040PlayingEntity;
+
             var allergyAdverseEvent = new AllergyAdverseEvent(client)
             {
-                Cause = act?.participant?.FirstOrDefault(p => p.typeCode=="CSM" &&  p.participantRole?.Item is POCD_MT000040PlayingEntity)
-                    ?.participantRole?.code?.GetCode(), //TODO: handle variable path? (see XML extension code)
-                DateRange = act?.effectiveTime?.GetDateRange()
+                Cause = playingEntity?.code?.GetCode(),
+                DateRange = act?.effectiveTime?.GetDateRange() //TODO: figure out date range parsing
             };
 
             //TODO: figure out allergy type and negation ind parsing
