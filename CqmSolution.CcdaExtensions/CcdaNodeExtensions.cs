@@ -26,6 +26,21 @@ namespace CqmSolution.CcdaExtensions
                 , Oid.TryParse(cd.valueSet));
         }
 
+        public static Code GetFirstNonNullValue(this POCD_MT000040Observation obs)
+        {
+            if (obs == null) return null;
+
+            var value = (obs.value?.FirstOrDefault(v => v is CD) as CD)?.GetCode();
+
+            if (!string.IsNullOrWhiteSpace(value?.Value)) return value;
+
+            var childObs = obs.entryRelationship?.FirstOrDefault(r =>
+                    r.Item is POCD_MT000040Observation)
+                ?.Item as POCD_MT000040Observation;
+
+            return GetFirstNonNullValue(childObs);
+        }
+
         public static CqmSolutionDate GetDate(this TS ts)
         {
             if (ts == null) return null;

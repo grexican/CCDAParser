@@ -45,28 +45,10 @@ namespace CqmSolution.CcdaExtensions.R2
             var allergyAdverseEvent = new AllergyAdverseEvent(client)
             {
                 Cause = playingEntity?.code?.GetCode(),
-                DateRange = act?.effectiveTime?.GetDateRange()
+                AllergyType = observation?.GetFirstNonNullValue(),
+                DateRange = act?.effectiveTime?.GetDateRange(),
+                NotPresent = observation != null && observation.negationInd
             };
-
-            //TODO: figure out allergy type and negation ind parsing
-            //var observationValues = act.SelectNodes(@".//entryrelationship/observation[code[@code='ASSERTION']]/value");
-
-            //foreach (var observationValue in observationValues)
-            //{
-            //    allergyAdverseEvent.AllergyType = observationValue.GetCode();
-
-            //    if (!string.IsNullOrWhiteSpace(allergyAdverseEvent.AllergyType?.Value))
-            //    {
-            //        var negationInd = observationValue.ParentNode?.Attributes["negationind"]?.Value;
-
-            //        if (bool.TryParse(negationInd, out var notPresent))
-            //        {
-            //            allergyAdverseEvent.NotPresent = notPresent;
-            //        }
-
-            //        break;
-            //    }
-            //}
 
             return allergyAdverseEvent;
         }

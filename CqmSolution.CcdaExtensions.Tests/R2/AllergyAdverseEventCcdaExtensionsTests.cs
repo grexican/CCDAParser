@@ -24,38 +24,37 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(client, allergyAdverseEvent?.Client);
         }
 
-        //TODO: uncomment once the parsing is all done
-        ////TODO: add Adverse Event test data
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "SectionType: Allergy (1.xml)", "ALLERGY")]
-        //[XmlDocumentData("TestData/CCD/4.xml", "SectionType: Allergy (4.xml)", "ALLERGY")]
-        //[XmlDocumentData("TestData/CCD/5.xml", "SectionType: Allergy (5.xml)", "ALLERGY")]
-        //public void GetAllergyAdverseEventsSetsSectionType(string path, string testName, string expected)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        //TODO: add Adverse Event test data
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "SectionType: Allergy (1.xml)", "ALLERGY")]
+        [XmlDocumentData("TestData/CCD/4.xml", "SectionType: Allergy (4.xml)", "ALLERGY")]
+        [XmlDocumentData("TestData/CCD/5.xml", "SectionType: Allergy (5.xml)", "ALLERGY")]
+        public void GetAllergyAdverseEventsSetsSectionType(string path, string testName, string expected)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
-        //    Assert.Equal(expected, allergyAdverseEvent?.SectionType);
-        //}
-        //
-        ////TODO: add Adverse Event test data
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "DataSubType: Allergy (1.xml)", "ALG")]
-        //[XmlDocumentData("TestData/CCD/4.xml", "DataSubType: Allergy (4.xml)", "ALG")]
-        //[XmlDocumentData("TestData/CCD/5.xml", "DataSubType: Allergy (5.xml)", "ALG")]
-        //public void GetAllergyAdverseEventsSetsDataSubType(string path, string testName, string expected)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
+            Assert.Equal(expected, allergyAdverseEvent?.SectionType);
+        }
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
-        //    Assert.Equal(expected, allergyAdverseEvent?.DataSubType);
-        //}
+        //TODO: add Adverse Event test data
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "DataSubType: Allergy (1.xml)", "ALG")]
+        [XmlDocumentData("TestData/CCD/4.xml", "DataSubType: Allergy (4.xml)", "ALG")]
+        [XmlDocumentData("TestData/CCD/5.xml", "DataSubType: Allergy (5.xml)", "ALG")]
+        public void GetAllergyAdverseEventsSetsDataSubType(string path, string testName, string expected)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
+
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
+            Assert.Equal(expected, allergyAdverseEvent?.DataSubType);
+        }
 
         //TODO: add test data with a count > 1
         [Theory]
@@ -90,22 +89,21 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(nullFlavor, allergyAdverseEvent?.Cause?.NullFlavor);
         }
 
-        //TODO: uncomment once the parsing is all done
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "AllergyType: Breathing Difficulty (1.xml)", "230145002", null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "AllergyType: Drug Intolerance (disorder) (4.xml)", "59037007", null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "AllergyType: Drug Allergy (5.xml)", "416098002", null)]
-        //public void GetAllergyAdverseEventsSetsAllergyType(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "AllergyType: Breathing Difficulty (1.xml)", "230145002", null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "AllergyType: Drug Intolerance (disorder) (4.xml)", "59037007", null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "AllergyType: Drug Allergy (5.xml)", "416098002", null)]
+        public void GetAllergyAdverseEventsSetsAllergyType(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
-        //    Assert.Equal(expected, allergyAdverseEvent?.AllergyType?.Value);
-        //    Assert.Equal(nullFlavor, allergyAdverseEvent?.AllergyType?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
+            Assert.Equal(expected, allergyAdverseEvent?.AllergyType?.Value);
+            Assert.Equal(nullFlavor, allergyAdverseEvent?.AllergyType?.NullFlavor);
+        }
 
         [Theory]
         [XmlDocumentData("TestData/CCD/1.xml", "DateLow: Oct 24 2018 (1.xml)", "20181024", null)]
@@ -139,20 +137,19 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(nullFlavor, allergyAdverseEvent?.DateRange?.DateHigh?.NullFlavor);
         }
 
-        //TODO: uncomment once the parsing is all done
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "NotPresent: false (1.xml)", false)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "NotPresent: false (4.xml)", false)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "NotPresent: false (5.xml)", false)]
-        //public void GetAllergyAdverseEventsSetsNotPresent(string path, string testName, bool expected)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "NotPresent: false (1.xml)", false)]
+        [XmlDocumentData("TestData/CCD/4.xml", "NotPresent: false (4.xml)", false)]
+        [XmlDocumentData("TestData/CCD/5.xml", "NotPresent: false (5.xml)", false)]
+        public void GetAllergyAdverseEventsSetsNotPresent(string path, string testName, bool expected)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
-        //    Assert.Equal(expected, allergyAdverseEvent?.NotPresent);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var allergyAdverseEvent = doc.GetAllergyAdverseEvents(client).FirstOrDefault();
+            Assert.Equal(expected, allergyAdverseEvent?.NotPresent);
+        }
     }
 }
