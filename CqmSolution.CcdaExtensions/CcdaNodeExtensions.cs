@@ -40,19 +40,18 @@ namespace CqmSolution.CcdaExtensions
 
         public static Address GetAddress(this AD ad)
         {
-            //TODO: finish implementing this when we figure out how to get specific Items out of AD
-            //if (ad == null)
+            if (ad == null)
                 return null;
 
-            //var streets = ad.Items.???
+            var streets = ad.Items?.Where(a => a is adxpstreetAddressLine).ToList();
 
-            //return new Address(node.Attributes["use"]?.Value
-            //    , streets.FirstOrDefault()?.InnerText
-            //    , streets.Skip(1).FirstOrDefault()?.InnerText
-            //    , node.SelectSingleNode("city")?.InnerText
-            //    , node.SelectSingleNode("state")?.InnerText
-            //    , node.SelectSingleNode("postalcode")?.InnerText
-            //    , node.SelectSingleNode("country")?.InnerText);
+            return new Address(ad.use?.FirstOrDefault()
+                , streets?.FirstOrDefault()?.Text?.FirstOrDefault()
+                , streets?.Skip(1).FirstOrDefault()?.Text?.FirstOrDefault()
+                , ad.Items?.FirstOrDefault(a => a is adxpcity)?.Text?.FirstOrDefault()
+                , ad.Items?.FirstOrDefault(a => a is adxpstate)?.Text?.FirstOrDefault()
+                , ad.Items?.FirstOrDefault(a => a is adxppostalCode)?.Text?.FirstOrDefault()
+                , ad.Items?.FirstOrDefault(a => a is adxpcountry)?.Text?.FirstOrDefault());
         }
 
         public static Phone GetPhone(this TEL tel)

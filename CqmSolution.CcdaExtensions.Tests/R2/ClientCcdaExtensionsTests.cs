@@ -27,32 +27,31 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(expected, client.ClientIdentifier);
         }
 
-        //TODO: Uncomment these when we figure out how to get the name fields.
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "FirstName", "FirstName (1.xml)")]
-        //public void GetClientSetsFirstName(string path, string expected, string testName)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "FirstName", "FirstName (1.xml)")]
+        public void GetClientSetsFirstName(string path, string expected, string testName)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
 
-        //    var client = doc.GetClient();
-        //    Assert.Equal(expected, client.FirstName);
-        //}
+            var client = doc.GetClient();
+            Assert.Equal(expected, client.FirstName);
+        }
 
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "LastName", "LastName (1.xml)")]
-        //public void GetClientSetsLastName(string path, string expected, string testName)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "LastName", "LastName (1.xml)")]
+        public void GetClientSetsLastName(string path, string expected, string testName)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
 
-        //    var client = doc.GetClient();
-        //    Assert.Equal(expected, client.LastName);
-        //}
+            var client = doc.GetClient();
+            Assert.Equal(expected, client.LastName);
+        }
 
         [Theory]
         [XmlDocumentData("TestData/CCD/1.xml", "19540101", "Date Of Birth: Jan 01 1954 (1.xml)")]
@@ -84,24 +83,23 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(displayName, client.Gender.DisplayName);
         }
 
-        //TODO: Uncomment this when we figure out how to get Address
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", null, null, null, null, "92691", "US", "Address: Zip only 92691 (1.xml)")]
-        //public void GetClientSetsAddress(string path, string street1, string street2, string city, string state, string zip, string country, string testName)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", null, null, null, null, "92691", "US", "Address: Zip only 92691 (1.xml)")]
+        public void GetClientSetsAddress(string path, string street1, string street2, string city, string state, string zip, string country, string testName)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
 
-        //    var client = doc.GetClient();
-        //    Assert.Equal(street1, client.Address.Street1);
-        //    Assert.Equal(street2, client.Address.Street2);
-        //    Assert.Equal(city, client.Address.City);
-        //    Assert.Equal(state, client.Address.State);
-        //    Assert.Equal(zip, client.Address.Zip);
-        //    Assert.Equal(country, client.Address.Country);
-        //}
+            var client = doc.GetClient();
+            Assert.Equal(street1, client.Address.Street1);
+            Assert.Equal(street2, client.Address.Street2);
+            Assert.Equal(city, client.Address.City);
+            Assert.Equal(state, client.Address.State);
+            Assert.Equal(zip, client.Address.Zip);
+            Assert.Equal(country, client.Address.Country);
+        }
 
         [Theory]
         [XmlDocumentData("TestData/CCD/1.xml", null, "UNK", "Language: null (1.xml)")]
