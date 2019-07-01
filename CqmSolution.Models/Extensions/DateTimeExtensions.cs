@@ -2,12 +2,12 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace CqmSolution.Models
+namespace CqmSolution.Models.Extensions
 {
     public static class DateTimeExtensions
     {
         static Regex _reDateTimeOffset = new Regex(@"(\d{14})(\-|\+)(\d{2})(\d{2})", RegexOptions.Compiled);
-        static readonly CultureInfo enUs = new CultureInfo("en-US");
+        static readonly CultureInfo EnUs = new CultureInfo("en-US");
 
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace CqmSolution.Models
             DateTime dtOut;
             DateTimeOffset dtOffset;
 
-            if (DateTimeOffset.TryParse(dt, enUs, DateTimeStyles.None, out dtOffset))
+            if (DateTimeOffset.TryParse(dt, EnUs, DateTimeStyles.None, out dtOffset))
                 return dtOffset.DateTime;
 
             if (DateTimeOffset.TryParseExact(dt, "yyyyMMddHHmmsszzz", CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.None, out dtOffset))
@@ -100,7 +100,7 @@ namespace CqmSolution.Models
                 return dtOut;
             /////////////////
 
-            if (DateTime.TryParse(dt, enUs, DateTimeStyles.None, out dtOut))
+            if (DateTime.TryParse(dt, EnUs, DateTimeStyles.None, out dtOut))
                 return dtOut;
 
             return null;

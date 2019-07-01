@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using CqmSolution.Models;
+using CqmSolution.Models.Extensions;
 
 namespace CqmSolution.XmlExtensions
 {

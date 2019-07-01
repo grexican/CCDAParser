@@ -1,4 +1,4 @@
-﻿namespace CqmSolution.Models
+﻿namespace CqmSolution.Models.Extensions
 {
     public static class StringExtensions
     {

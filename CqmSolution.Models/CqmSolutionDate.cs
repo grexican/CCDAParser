@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CqmSolution.Models.Extensions;
 
 namespace CqmSolution.Models
 {

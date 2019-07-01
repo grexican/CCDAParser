@@ -1,4 +1,5 @@
 ﻿using CqmSolution.Models;
+using CqmSolution.Models.Extensions;
 using Xunit;
 
 namespace CqmSolution.XmlExtensions.Tests

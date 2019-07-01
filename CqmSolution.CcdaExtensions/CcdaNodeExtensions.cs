@@ -5,38 +5,53 @@ namespace CqmSolution.CcdaExtensions
 {
     public static class CcdaNodeExtensions
     {
+        public static Code GetCode(this CD cd)
+        {
+            if (cd == null) return null;
+
+            if (string.IsNullOrWhiteSpace(cd.code))
+            {
+                var translation = cd.translation?.FirstOrDefault();
+                if (translation != null)
+                {
+                    cd = translation;
+                }
+            }
+
+            return new Code(Oid.TryParse(cd.codeSystem)
+                , cd.codeSystemName
+                , cd.code
+                , cd.nullFlavor
+                , cd.displayName
+                , Oid.TryParse(cd.valueSet));
+        }
+
         public static CqmSolutionDate GetDate(this TS ts)
         {
             if (ts == null) return null;
 
             return CqmSolutionDate.TryParse(ts.value, ts.nullFlavor);
         }
-        //
-        public static Code GetCode(this CE ce)
+
+        public static CqmSolutionDateRange GetDateRange(this IVL_TS ivlts)
         {
-            if (ce == null) return null;
+            //TODO: figure out date range parsing
+            //if (ivlts == null)
+                return null;
 
-            if (string.IsNullOrWhiteSpace(ce.code))
-            {
-                var translation = ce.translation?.FirstOrDefault();
-                if (translation != null)
-                {
-                    return new Code(Oid.TryParse(translation.codeSystem)
-                        , translation.codeSystemName
-                        , translation.code
-                        , translation.nullFlavor
-                        , translation.displayName
-                        , Oid.TryParse(translation.valueSet));
-                }
-            }
+                //[System.Xml.Serialization.XmlElementAttribute("center", typeof(TS))]
+                //[System.Xml.Serialization.XmlElementAttribute("high", typeof(IVXB_TS))]
+                //[System.Xml.Serialization.XmlElementAttribute("low", typeof(IVXB_TS))]
+                //[System.Xml.Serialization.XmlElementAttribute("width", typeof(PQ))]
+                //[System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
 
-            return new Code(Oid.TryParse(ce.codeSystem)
-                , ce.codeSystemName
-                , ce.code
-                , ce.nullFlavor
-                , ce.displayName
-                , Oid.TryParse(ce.valueSet));
+            ////Some of our sample data files have effectiveTime nodes with only a single value, not low & high values.
+            ////If that happens, it represents a Point In Time, so we take that to be both the low and the high value. //TODO: is that correct?
+            //return new EcqmDateRange((ivlts.Items?.Where(t => t is IVXB_TS)?.FirstOrDefault() as IVXB_TS)?.GetDate(),
+            //    effectiveTime.SelectSingleNode("low").GetDate() ?? effectiveTime.GetDate()
+            //    , effectiveTime.SelectSingleNode("high").GetDate() ?? effectiveTime.GetDate());
         }
+
 
         public static Address GetAddress(this AD ad)
         {

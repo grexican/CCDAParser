@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CqmSolution.Models
+namespace CqmSolution.Models.Extensions
 {
     public static class CqmSolutionEntityExtensions
     {
