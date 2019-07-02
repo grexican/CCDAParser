@@ -1,24 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CqmSolution.Models;
-using CqmSolution.Models.Extensions;
 
-namespace CqmSolution.XmlExtensions
+namespace CqmSolution.Models.Extensions
 {
     public static class StoredProcStagingDataPrep
     {
-        public static void UpdateClientStagingData(Client client, string stagingTableName = "StagingTable")
+        public static void UpdateClientStagingData(this Client client, string stagingTableName = "StagingTable")
         {
             //ClearStagingTableForClient(client, stagingTableName);
         }
 
-        public static void ClearStagingTableForClient(Client client, string stagingTableName = "StagingTable")
+        public static void ClearStagingTableForClient(this Client client, string stagingTableName = "StagingTable")
         {
             // DELETE all staging table for that client...
         }
 
-        public static string GenerateStagingTableInserts(List<CqmSolutionEntity> entities, string stagingTableName="StagingTable")
+        public static string GenerateStagingTableInserts(this List<CqmSolutionEntity> entities, string stagingTableName="StagingTable")
         {
             var sql = new StringBuilder();
 

@@ -41,15 +41,14 @@ namespace CqmSolution.CcdaExtensions.R2
 
             var diagnosisProblem = new DiagnosisProblem(client)
             {
-                //TODO: figure out parsing
-                //ProblemResult = observation?.value?.GetResultValue(),
-                //DateRange = diagnosisProblemObservation?.GetDateRange(), //use the date on the observation (which is the date of biological onset),
-                //                                                         //NOT the date on the act (which is the date the concern was authored in the patient's chart)
-                //                                                         //TODO: but does that ^ make sense if there are multiple observations under the same concern act??
-                //Status = diagnosisProblemAct.SelectSingleNode("statuscode").GetCode(),  //use the status code on the act (which is the overall concern status),
-                //                                                                        //NOT the statusCode on the observation
-                //TargetSite = diagnosisProblemAct.SelectSingleNode(".//targetsitecode/qualifier/value").GetCode(),
-                //Severity = diagnosisProblemAct
+                //TODO: ProblemResult = observation?.value?.GetResultValue(),
+                DateRange = observation?.effectiveTime?.GetDateRange(), //use the date on the observation (which is the date of biological onset),
+                                                                        //NOT the date on the act (which is the date the concern was authored in the patient's chart)
+                                                                        //TODO: but does that ^ make sense if there are multiple observations under the same concern act??
+                Status = act?.statusCode?.GetCode(),                    //use the status code on the act (which is the overall concern status),
+                                                                        //NOT the statusCode on the observation
+                //TODO: TargetSite = diagnosisProblemAct.SelectSingleNode(".//targetsitecode/qualifier/value").GetCode(),
+                //TODO: Severity = diagnosisProblemAct
                 //    .SelectSingleNode(
                 //        @".//entryrelationship[@typecode='SUBJ' and @inversionind='true']/observation[@classcode='OBS' and code[@code='SEV']]/value")
                 //    .GetCode()

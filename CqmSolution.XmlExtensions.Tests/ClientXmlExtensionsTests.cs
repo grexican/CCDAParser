@@ -3,8 +3,10 @@ using Xunit;
 
 namespace CqmSolution.XmlExtensions.Tests
 {
+    /// <summary>
     /// Note: The Client section in test data files 4.xml through 9.xml is identical to that in 1.xml,
     /// so we are only running these tests on 1.xml through 3.xml.
+    /// </summary>
     public class ClientXmlExtensionsTests
     {
         [Theory]

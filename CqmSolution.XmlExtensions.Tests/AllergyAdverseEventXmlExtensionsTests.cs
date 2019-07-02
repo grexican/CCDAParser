@@ -4,8 +4,10 @@ using Xunit;
 
 namespace CqmSolution.XmlExtensions.Tests
 {
+    /// <summary>
     /// Note: The AllergyAdverseEvents section in test data files 6.xml through 9.xml is identical to that in 5.xml,
     /// so we are only running these tests on 1.xml through 5.xml.
+    /// </summary>
     public class AllergyAdverseEventXmlExtensionsTests
     {
         // This doesn't vary by test file, so no need to test all of them.
