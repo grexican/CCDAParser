@@ -73,24 +73,23 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(expected, diagnosisProblems?.Count);
         }
 
-        //TODO:
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "Problem: Choroidal dystrophy (central areolar) (generalized) (peripap (1.xml)", "193468002")]
-        //[XmlDocumentData("TestData/CCD/4.xml", "Problem: Below Knee Amputation Status (4.xml)", "V49.75")]
-        //[XmlDocumentData("TestData/CCD/5.xml", "Problem: Community Acquired Pneumonia (5.xml)", "385093006")]
-        //[XmlDocumentData("TestData/CCD/6.xml", "Problem: Acute pharyngitis (6.xml)", "363746003")]
-        //[XmlDocumentData("TestData/CCD/7.xml", "Problem (Not Present, aka None Known): Problem (7.xml)", "55607006")]
-        //[XmlDocumentData("TestData/CCD/8.xml", "Problem (Specific, Not Present): Diabetes Mellitus Type 2 (Disorder) (8.xml)", "44054006")]
-        //public void GetDiagnosisProblemsSetsProblemResult(string path, string testName, string expected)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "Problem: Choroidal dystrophy (central areolar) (generalized) (peripap (1.xml)", "193468002")]
+        [XmlDocumentData("TestData/CCD/4.xml", "Problem: Below Knee Amputation Status (4.xml)", "V49.75")]
+        [XmlDocumentData("TestData/CCD/5.xml", "Problem: Community Acquired Pneumonia (5.xml)", "385093006")]
+        [XmlDocumentData("TestData/CCD/6.xml", "Problem: Acute pharyngitis (6.xml)", "363746003")]
+        [XmlDocumentData("TestData/CCD/7.xml", "Problem (Not Present, aka None Known): Problem (7.xml)", "55607006")]
+        [XmlDocumentData("TestData/CCD/8.xml", "Problem (Specific, Not Present): Diabetes Mellitus Type 2 (Disorder) (8.xml)", "44054006")]
+        public void GetDiagnosisProblemsSetsProblemResult(string path, string testName, string expected)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
-        //    Assert.Equal(expected, diagnosisProblem?.ProblemResult?.ToString());
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
+            Assert.Equal(expected, diagnosisProblem?.ProblemResult?.ToString());
+        }
 
         [Theory]
         [XmlDocumentData("TestData/CCD/1.xml", "DateLow: Oct 24 2018 (1.xml)", "20181024", null)]

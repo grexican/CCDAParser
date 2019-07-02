@@ -41,7 +41,7 @@ namespace CqmSolution.CcdaExtensions.R2
 
             var diagnosisProblem = new DiagnosisProblem(client)
             {
-                //TODO: ProblemResult = observation?.value?.GetResultValue(),
+                ProblemResult = observation?.value?.GetResultValue(),
                 DateRange = observation?.effectiveTime?.GetDateRange(), //use the date on the observation (which is the date of biological onset),
                                                                         //NOT the date on the act (which is the date the concern was authored in the patient's chart)
                                                                         //TODO: but does that ^ make sense if there are multiple observations under the same concern act??
