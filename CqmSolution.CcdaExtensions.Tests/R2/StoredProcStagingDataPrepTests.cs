@@ -27,7 +27,7 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             var client = doc.GetClient();
             var allergyAdverseEvents = doc.GetAllergyAdverseEvents(client);
             var diagnosisProblems = doc.GetDiagnosisProblems(client);
-            //TODO: var encounters = doc.GetEncounters(client);
+            var encounters = doc.GetEncounters(client);
             //TODO: var medications = doc.GetMedications(client);
 
             var entities = new List<CqmSolutionEntity>();
@@ -35,7 +35,7 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             entities.Add(client);
             entities.AddRange(allergyAdverseEvents);
             entities.AddRange(diagnosisProblems);
-            //TODO: entities.AddRange(encounters);
+            entities.AddRange(encounters);
             //TODO: entities.AddRange(medications);
 
             var sql = entities.GenerateStagingTableInserts();
