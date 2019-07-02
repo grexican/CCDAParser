@@ -148,44 +148,43 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(nullFlavor, diagnosisProblem?.Status?.NullFlavor);
         }
 
-        //TODO:
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "Severity: null (1.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "Severity: null (4.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "Severity: Moderate (5.xml)", "6736007", null)]
-        //[XmlDocumentData("TestData/CCD/6.xml", "Severity: null (6.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/7.xml", "Severity: null (7.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "Severity: null (8.xml)", null, null)]
-        //public void GetDiagnosisProblemsSetsSeverity(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "Severity: null (1.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "Severity: null (4.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "Severity: Moderate (5.xml)", "6736007", null)]
+        [XmlDocumentData("TestData/CCD/6.xml", "Severity: null (6.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/7.xml", "Severity: null (7.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "Severity: null (8.xml)", null, null)]
+        public void GetDiagnosisProblemsSetsSeverity(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
-        //    Assert.Equal(expected, diagnosisProblem?.Severity?.Value);
-        //    Assert.Equal(nullFlavor, diagnosisProblem?.Severity?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
+            Assert.Equal(expected, diagnosisProblem?.Severity?.Value);
+            Assert.Equal(nullFlavor, diagnosisProblem?.Severity?.NullFlavor);
+        }
 
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "TargetSite: null (1.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "TargetSite: Left (4.xml)", "7771000", null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "TargetSite: null (5.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/6.xml", "TargetSite: null (6.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/7.xml", "TargetSite: null (7.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "TargetSite: null (8.xml)", null, null)]
-        //public void GetDiagnosisProblemsSetsTargetSite(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "TargetSite: null (1.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "TargetSite: Left (4.xml)", "7771000", null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "TargetSite: null (5.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/6.xml", "TargetSite: null (6.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/7.xml", "TargetSite: null (7.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "TargetSite: null (8.xml)", null, null)]
+        public void GetDiagnosisProblemsSetsTargetSite(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
-        //    Assert.Equal(expected, diagnosisProblem?.TargetSite?.Value);
-        //    Assert.Equal(nullFlavor, diagnosisProblem?.TargetSite?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var diagnosisProblem = doc.GetDiagnosisProblems(client).FirstOrDefault();
+            Assert.Equal(expected, diagnosisProblem?.TargetSite?.Value);
+            Assert.Equal(nullFlavor, diagnosisProblem?.TargetSite?.NullFlavor);
+        }
 
         [Theory]
         [XmlDocumentData("TestData/CCD/1.xml", "NotPresent: false (1.xml)", false)]

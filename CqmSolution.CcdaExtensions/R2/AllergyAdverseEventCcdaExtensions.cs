@@ -45,7 +45,7 @@ namespace CqmSolution.CcdaExtensions.R2
             var allergyAdverseEvent = new AllergyAdverseEvent(client)
             {
                 Cause = playingEntity?.code?.GetCode(),
-                AllergyType = observation?.GetFirstNonNullValue(),
+                AllergyType = observation?.GetFirstNonNullValueCode(),
                 DateRange = act?.effectiveTime?.GetDateRange(),
                 NotPresent = observation != null && observation.negationInd
             };

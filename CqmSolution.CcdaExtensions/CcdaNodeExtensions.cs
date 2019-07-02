@@ -26,7 +26,7 @@ namespace CqmSolution.CcdaExtensions
                 , Oid.TryParse(cd.valueSet));
         }
 
-        public static Code GetFirstNonNullValue(this POCD_MT000040Observation obs)
+        public static Code GetFirstNonNullValueCode(this POCD_MT000040Observation obs)
         {
             if (obs == null) return null;
 
@@ -38,7 +38,7 @@ namespace CqmSolution.CcdaExtensions
                     r.Item is POCD_MT000040Observation)
                 ?.Item as POCD_MT000040Observation;
 
-            return GetFirstNonNullValue(childObs);
+            return GetFirstNonNullValueCode(childObs);
         }
 
         public static CqmSolutionDate GetDate(this TS ts)
