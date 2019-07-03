@@ -47,8 +47,12 @@ namespace CqmSolution.CcdaExtensions.R2
                 FacilityLocation = encounterEntry?.participant?.FirstOrDefault(p => p.typeCode == "LOC")?.participantRole?.GetCodeWithDateRange(),
                 //
                 DischargeDisposition = encounterEntry?.dischargeDispositionCode?.GetCode(),
-                //TODO: PrincipalDiagnosis = encounterEntry.SelectSingleNode($"entryrelationship/act[@classcode='ACT' and code[@code='{LoincConstants.HOSPITAL_DISCHARGE_DIAGNOSIS}']]/entryrelationship/observation/value").GetCode(),
-                //TODO: EncounterDiagnosis = encounterEntry.SelectSingleNode($"entryrelationship/act[@classcode='ACT' and code[@code='{LoincConstants.ENCOUNTER_DIAGNOSIS}']]/entryrelationship/observation/value").GetCodeWithDateRange()
+                PrincipalDiagnosis = ((encounterEntry?.entryRelationship?.FirstOrDefault(r => (r.Item as POCD_MT000040Act)
+                    ?.code?.code == LoincConstants.HOSPITAL_DISCHARGE_DIAGNOSIS)?.Item as POCD_MT000040Act)
+                    ?.entryRelationship?.FirstOrDefault(e => e.Item is POCD_MT000040Observation)?.Item as POCD_MT000040Observation)?.GetFirstNonNullValueCode(),
+                EncounterDiagnosis = ((encounterEntry?.entryRelationship?.FirstOrDefault(r => (r.Item as POCD_MT000040Act)
+                    ?.code?.code == LoincConstants.ENCOUNTER_DIAGNOSIS)?.Item as POCD_MT000040Act)
+                    ?.entryRelationship?.FirstOrDefault(e => e.Item is POCD_MT000040Observation)?.Item as POCD_MT000040Observation)?.GetValueCodeWithDateRange()
             };
 
             //TODO: distinguish between Principal Diagnosis and Encounter Diagnosis using priorityCode?  Does this only apply to HospitalDischargeDiagnosis?

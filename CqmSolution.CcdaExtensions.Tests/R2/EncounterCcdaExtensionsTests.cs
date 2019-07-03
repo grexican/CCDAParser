@@ -217,85 +217,84 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             Assert.Equal(nullFlavor, encounter?.DischargeDisposition?.NullFlavor);
         }
 
-        //TODO:
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "PrincipalDiagnosis: null (1.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "PrincipalDiagnosis: null (4.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "PrincipalDiagnosis: null (5.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/6.xml", "PrincipalDiagnosis: null (6.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/7.xml", "PrincipalDiagnosis: Congestive heart failure, unspecified (7.xml)", "428.0", null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "PrincipalDiagnosis: null (8.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/9.xml", "PrincipalDiagnosis: null (9.xml)", null, null)]
-        //public void GetEncountersSetsPrincipalDiagnosisCode(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "PrincipalDiagnosis: null (1.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "PrincipalDiagnosis: null (4.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "PrincipalDiagnosis: null (5.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/6.xml", "PrincipalDiagnosis: null (6.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/7.xml", "PrincipalDiagnosis: Congestive heart failure, unspecified (7.xml)", "428.0", null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "PrincipalDiagnosis: null (8.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/9.xml", "PrincipalDiagnosis: null (9.xml)", null, null)]
+        public void GetEncountersSetsPrincipalDiagnosisCode(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var encounter = doc.GetEncounters(client).FirstOrDefault();
-        //    Assert.Equal(expected, encounter?.PrincipalDiagnosis?.Value);
-        //    Assert.Equal(nullFlavor, encounter?.PrincipalDiagnosis?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var encounter = doc.GetEncounters(client).FirstOrDefault();
+            Assert.Equal(expected, encounter?.PrincipalDiagnosis?.Value);
+            Assert.Equal(nullFlavor, encounter?.PrincipalDiagnosis?.NullFlavor);
+        }
 
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (1.xml)", "H40.1131", null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (4.xml)", "H40.1131", null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (5.xml)", "H40.1131", null)]
-        //[XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosis: Asymmetry of maxilla (disorder) (6.xml)", "235083001", null)]
-        //[XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosis: null (7.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosis: null (8.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosis: Costal Chondritis (9.xml)", "64109004", null)]
-        //public void GetEncountersSetsEncounterDiagnosisCode(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (1.xml)", "H40.1131", null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (4.xml)", "H40.1131", null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosis: Primary open-angle glaucoma, bilateral, mild stage (5.xml)", "H40.1131", null)]
+        [XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosis: Asymmetry of maxilla (disorder) (6.xml)", "235083001", null)]
+        [XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosis: null (7.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosis: null (8.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosis: Costal Chondritis (9.xml)", "64109004", null)]
+        public void GetEncountersSetsEncounterDiagnosisCode(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var encounter = doc.GetEncounters(client).FirstOrDefault();
-        //    Assert.Equal(expected, encounter?.EncounterDiagnosis?.Code?.Value);
-        //    Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.Code?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var encounter = doc.GetEncounters(client).FirstOrDefault();
+            Assert.Equal(expected, encounter?.EncounterDiagnosis?.Code?.Value);
+            Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.Code?.NullFlavor);
+        }
 
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (1.xml)", "20181005", null)]
-        //[XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (4.xml)", "20181005", null)]
-        //[XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (5.xml)", "20181005", null)]
-        //[XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosisDateLow: Sep 18 2017 09:39:00 EDT (6.xml)", "20170918093900-0400", null)]
-        //[XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosisDateLow: null (7.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosisDateLow: null (8.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosisDateLow: Aug 15 2012 (9.xml)", "20120815", null)]
-        //public void GetEncountersSetsEncounterDiagnosisDateLow(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (1.xml)", "20181005", null)]
+        [XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (4.xml)", "20181005", null)]
+        [XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosisDateLow: Oct 05 2018 (5.xml)", "20181005", null)]
+        [XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosisDateLow: Sep 18 2017 09:39:00 EDT (6.xml)", "20170918093900-0400", null)]
+        [XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosisDateLow: null (7.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosisDateLow: null (8.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosisDateLow: Aug 15 2012 (9.xml)", "20120815", null)]
+        public void GetEncountersSetsEncounterDiagnosisDateLow(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var encounter = doc.GetEncounters(client).FirstOrDefault();
-        //    Assert.Equal(expected, encounter?.EncounterDiagnosis?.DateRange?.DateLow?.Value);
-        //    Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.DateRange?.DateLow?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var encounter = doc.GetEncounters(client).FirstOrDefault();
+            Assert.Equal(expected, encounter?.EncounterDiagnosis?.DateRange?.DateLow?.Value);
+            Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.DateRange?.DateLow?.NullFlavor);
+        }
 
-        //[Theory]
-        //[XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosisDateHigh: null (1.xml)", null, "UNK")]
-        //[XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosisDateHigh: null (4.xml)", null, "UNK")]
-        //[XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosisDateHigh: null (5.xml)", null, "UNK")]
-        //[XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosisDateHigh: null (6.xml)", null, "NI")]
-        //[XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosisDateHigh: null (7.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosisDateHigh: null (8.xml)", null, null)]
-        //[XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosisDateHigh: Sep 01 2017 (9.xml)", "20170901", null)]
-        //public void GetEncountersSetsEncounterDiagnosisDateHigh(string path, string testName, string expected, string nullFlavor)
-        //{
-        //    var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
-        //    var reader = new StreamReader(path);
+        [Theory]
+        [XmlDocumentData("TestData/CCD/1.xml", "EncounterDiagnosisDateHigh: null (1.xml)", null, "UNK")]
+        [XmlDocumentData("TestData/CCD/4.xml", "EncounterDiagnosisDateHigh: null (4.xml)", null, "UNK")]
+        [XmlDocumentData("TestData/CCD/5.xml", "EncounterDiagnosisDateHigh: null (5.xml)", null, "UNK")]
+        [XmlDocumentData("TestData/CCD/6.xml", "EncounterDiagnosisDateHigh: null (6.xml)", null, "NI")]
+        [XmlDocumentData("TestData/CCD/7.xml", "EncounterDiagnosisDateHigh: null (7.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/8.xml", "EncounterDiagnosisDateHigh: null (8.xml)", null, null)]
+        [XmlDocumentData("TestData/CCD/9.xml", "EncounterDiagnosisDateHigh: Sep 01 2017 (9.xml)", "20170901", null)]
+        public void GetEncountersSetsEncounterDiagnosisDateHigh(string path, string testName, string expected, string nullFlavor)
+        {
+            var serializer = new XmlSerializer(typeof(POCD_MT000040ClinicalDocument));
+            var reader = new StreamReader(path);
 
-        //    var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
-        //    var client = doc.GetClient();
-        //    var encounter = doc.GetEncounters(client).FirstOrDefault();
-        //    Assert.Equal(expected, encounter?.EncounterDiagnosis?.DateRange?.DateHigh?.Value);
-        //    Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.DateRange?.DateHigh?.NullFlavor);
-        //}
+            var doc = (POCD_MT000040ClinicalDocument)serializer.Deserialize(reader);
+            var client = doc.GetClient();
+            var encounter = doc.GetEncounters(client).FirstOrDefault();
+            Assert.Equal(expected, encounter?.EncounterDiagnosis?.DateRange?.DateHigh?.Value);
+            Assert.Equal(nullFlavor, encounter?.EncounterDiagnosis?.DateRange?.DateHigh?.NullFlavor);
+        }
     }
 }

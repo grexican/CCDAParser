@@ -82,6 +82,17 @@ namespace CqmSolution.CcdaExtensions
             return new CqmSolutionDateRange(low?.GetDate() ?? center?.GetDate(), high?.GetDate() ?? center?.GetDate());
         }
 
+        public static CodeWithDateRange GetValueCodeWithDateRange(this POCD_MT000040Observation obs)
+        {
+            if (obs == null) return null;
+
+            var code = obs.GetFirstNonNullValueCode();
+
+            var dateRange = obs.effectiveTime?.GetDateRange();
+
+            return new CodeWithDateRange(code, dateRange);
+        }
+
         public static CodeWithDateRange GetCodeWithDateRange(this POCD_MT000040ParticipantRole pr)
         {
             if (pr == null) return null;
