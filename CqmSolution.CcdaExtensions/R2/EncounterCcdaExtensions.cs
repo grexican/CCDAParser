@@ -44,7 +44,7 @@ namespace CqmSolution.CcdaExtensions.R2
                 // There is usually an effectiveTime above it in the data file, at the same level as the participant, but
                 // that is where we are getting the VisitDateRange from.  If the FacilityLocation DateRange is the same as
                 // the top-level DateRange for this Encounter, what's the point of having it at the FacilityLocation level?
-                //TODO: FacilityLocation = encounterEntry.SelectSingleNode(@"participant[@typecode='LOC']/participantrole[@classcode='SDLOC']/code").GetCodeWithDateRange(),
+                FacilityLocation = encounterEntry?.participant?.FirstOrDefault(p => p.typeCode == "LOC")?.participantRole?.GetCodeWithDateRange(),
                 //
                 DischargeDisposition = encounterEntry?.dischargeDispositionCode?.GetCode(),
                 //TODO: PrincipalDiagnosis = encounterEntry.SelectSingleNode($"entryrelationship/act[@classcode='ACT' and code[@code='{LoincConstants.HOSPITAL_DISCHARGE_DIAGNOSIS}']]/entryrelationship/observation/value").GetCode(),

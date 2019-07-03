@@ -50,34 +50,47 @@ namespace CqmSolution.CcdaExtensions
 
         public static CqmSolutionDateRange GetDateRange(this IVL_TS ivlts)
         {
-            if (ivlts?.ItemsElementName == null || ivlts.Items == null || ivlts.ItemsElementName.Length != ivlts.Items.Length)
-            {
-                return null;
-            }
-
             TS low = null;
             TS high = null;
             TS center = null;
 
-            for (int i = 0; i < ivlts.ItemsElementName.Length; i++)
+            if (ivlts?.ItemsElementName == null || ivlts.Items == null || ivlts.ItemsElementName.Length != ivlts.Items.Length)
             {
-                switch (ivlts.ItemsElementName[i])
+                center = ivlts; //if there are no items, just use the main value of the IVL_TS, essentially treating it as a single TS
+            }
+            else
+            {
+                for (int i = 0; i < ivlts.ItemsElementName.Length; i++)
                 {
-                    case ItemsChoiceType2.low:
-                        low = ivlts.Items[i] as TS;
-                        break;
-                    case ItemsChoiceType2.high:
-                        high = ivlts.Items[i] as TS;
-                        break;
-                    case ItemsChoiceType2.center:
-                        center = ivlts.Items[i] as TS;
-                        break;
+                    switch (ivlts.ItemsElementName[i])
+                    {
+                        case ItemsChoiceType2.low:
+                            low = ivlts.Items[i] as TS;
+                            break;
+                        case ItemsChoiceType2.high:
+                            high = ivlts.Items[i] as TS;
+                            break;
+                        case ItemsChoiceType2.center:
+                            center = ivlts.Items[i] as TS;
+                            break;
+                    }
                 }
             }
 
             //Some of our sample data files have effectiveTime nodes with only a single value, not low & high values.
             //If that happens, it represents a Point In Time, so we take that to be both the low and the high value. //TODO: is that correct?
             return new CqmSolutionDateRange(low?.GetDate() ?? center?.GetDate(), high?.GetDate() ?? center?.GetDate());
+        }
+
+        public static CodeWithDateRange GetCodeWithDateRange(this POCD_MT000040ParticipantRole pr)
+        {
+            if (pr == null) return null;
+
+            var code = pr.code?.GetCode();
+
+            var dateRange = GetDateRange(null); //TODO: where is Service Delivery Location date range supposed to come from?
+
+            return new CodeWithDateRange(code, dateRange);
         }
 
         public static ResultValue GetResultValue(this ANY[] any)

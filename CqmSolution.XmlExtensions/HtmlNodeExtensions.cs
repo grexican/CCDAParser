@@ -59,7 +59,7 @@ namespace CqmSolution.XmlExtensions
         {
             if (node == null) return null;
 
-            var code = GetCode(node);
+            var code = node.GetCode();
 
             var dateRange = node.ParentNode?.GetDateRange();
 
