@@ -28,7 +28,7 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             var allergyAdverseEvents = doc.GetAllergyAdverseEvents(client);
             var diagnosisProblems = doc.GetDiagnosisProblems(client);
             var encounters = doc.GetEncounters(client);
-            //TODO: var medications = doc.GetMedications(client);
+            var medications = doc.GetMedications(client);
 
             var entities = new List<CqmSolutionEntity>();
 
@@ -36,7 +36,7 @@ namespace CqmSolution.CcdaExtensions.Tests.R2
             entities.AddRange(allergyAdverseEvents);
             entities.AddRange(diagnosisProblems);
             entities.AddRange(encounters);
-            //TODO: entities.AddRange(medications);
+            entities.AddRange(medications);
 
             var sql = entities.GenerateStagingTableInserts();
             Assert.False(string.IsNullOrWhiteSpace(sql));

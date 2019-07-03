@@ -82,6 +82,17 @@ namespace CqmSolution.CcdaExtensions
             return new CqmSolutionDateRange(low?.GetDate() ?? center?.GetDate(), high?.GetDate() ?? center?.GetDate());
         }
 
+        public static CqmSolutionDateRange GetDateRangeFromArray(this SXCM_TS[] sxcmts)
+        {
+            if (sxcmts == null || sxcmts.Length == 0) return null;
+
+            //TODO: is this correct?
+            TS low = sxcmts[0];
+            TS high = (sxcmts.Length == 1) ? sxcmts[0] : sxcmts[1];
+
+            return new CqmSolutionDateRange(low?.GetDate(), high?.GetDate());
+        }
+
         public static CodeWithDateRange GetValueCodeWithDateRange(this POCD_MT000040Observation obs)
         {
             if (obs == null) return null;
